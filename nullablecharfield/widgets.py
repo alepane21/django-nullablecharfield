@@ -14,7 +14,6 @@ class NullableTextWidget(TextInput):
         js = ('js/nullabletext.js',)
 
     def __init__(self, attrs=None):
-        print attrs
         if attrs is not None:
             self.isnull = attrs.pop('isnull', self.isnull)
         super(TextInput, self).__init__(attrs)
