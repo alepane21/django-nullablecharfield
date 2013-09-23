@@ -1,4 +1,5 @@
 from django.forms.fields import CharField
+from django.utils.encoding import smart_str
 from nullablecharfield.widgets import NullableTextWidget
 
 class CharNullField(CharField):
