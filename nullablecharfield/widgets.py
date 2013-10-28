@@ -1,5 +1,6 @@
 from django.forms.widgets import TextInput
-from django.utils.html import format_html
+from django.utils.html import format_html, mark_safe
+from django.utils.translation import string_concat
 from django.utils.translation import gettext_lazy as _
 
 class NullableTextWidget(TextInput):
@@ -25,11 +26,13 @@ class NullableTextWidget(TextInput):
         attrs['onchange'] = 'NullableText.input_event(this)'
         checked = ''
         if value is None:
+            print value
             checked = ' checked="checked"'
         checkbox = format_html('')
+        widget_name = 'id_' + name + '_isnull'
         if self.isnull:
-            checkbox = format_html(' <input type="checkbox" onchange="NullableText.null_event(this)" name="{0}" id="{0}" value="1"{1}><label class="vCheckboxLabel" for="{0}">{2}</label>', 'id_' + name + '_isnull', checked, _('Not specified'))
-        return super(TextInput, self).render(name, value, attrs) + checkbox
+            checkbox = string_concat(' <input type="checkbox" onchange="NullableText.null_event(this)" name="', widget_name,'" id="', widget_name, '" value="1"', checked,'><label class="vCheckboxLabel" for="', widget_name, '">', _('Not specified'),'</label>')
+        return mark_safe(string_concat(super(TextInput, self).render(name, value, attrs), checkbox))
 
     def value_from_datadict(self, data, files, name):
         null = data.get(name + '_isnull')
