@@ -26,7 +26,6 @@ class NullableTextWidget(TextInput):
         attrs['onchange'] = 'NullableText.input_event(this)'
         checked = ''
         if value is None:
-            print value
             checked = ' checked="checked"'
         checkbox = format_html('')
         widget_name = 'id_' + name + '_isnull'
