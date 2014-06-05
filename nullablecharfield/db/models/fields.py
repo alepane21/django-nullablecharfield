@@ -17,3 +17,15 @@ class CharNullField(models.CharField):
         defaults.update(kwargs)
         defaults['widget'] = NullableTextWidget
         return super(CharNullField, self).formfield(**defaults)
+
+
+try:
+    import south
+except ImportError:
+    pass
+else:
+    from south.modelsinspector import add_introspection_rules
+    # We inherit from CharField and add no new arguments to the constructor,
+    # it's sufficient to declare this with no additional rules.
+    add_introspection_rules(
+        [], [r"^nullablecharfield\.db\.models\.fields\.CharNullField"])
