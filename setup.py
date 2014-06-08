@@ -8,7 +8,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-nullablecharfield',
-    version='0.2.1',
+    version='0.2.2',
     url='https://github.com/alepane21/django-nullablecharfield',
     packages=['nullablecharfield'],
     include_package_data=True,
