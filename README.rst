@@ -16,11 +16,11 @@ Quick start
 
 2. Use in your model CharNullField from nullablecharfield.db.models.fields
 
-3. You should set null=True in the fields that you want to make nullable, like this::
+3. You should set null=True and blank=True in the fields that you want to make nullable, like this::
 
       from django.db import models
       from nullablecharfield.db.models.fields import CharNullField 
       
       class Person(models.Model): 
-          first_name = CharNullField(max_length=30, null=True) 
-          last_name = CharNullField(max_length=30, null=True)
+          first_name = CharNullField(max_length=30, null=True, blank=True) 
+          last_name = CharNullField(max_length=30, null=True, blank=True)
